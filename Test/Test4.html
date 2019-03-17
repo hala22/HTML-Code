@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>表单标签</title>
+</head>
+<body>
+    <form action="" method="get">
+        名字：<input type="text" name="username" value="123"/><br/>
+        密码：<input type="password" name="password"/><br/>
+        性别：<input type="radio" name="sex" value="female" checked/>女
+            <input type="radio" name="sex" value="male"/>男<br/>
+        爱好：<input type="checkbox" name="hobby" value="football" checked/>足球
+            <input type="checkbox" name="hobby" value="basketball" checked/>篮球
+            <input type="checkbox" name="hobby" value="tennis"/>网球<br/>
+        <input type="file"/><br/>
+        地点：
+            <select name="city">
+                <optgroup label="北方">
+                    <option value="beijing" selected>北京</option>
+                    <option value="tianjin" >天津</option>
+                </optgroup>
+                <optgroup label="南方">
+                    <option value="nanjing">南京</option>
+                    <option value="hangzhou">杭州</option>
+                </optgroup>
+            </select><br/>
+        <textarea name="ins" cols="60px" rows="5px">请介绍自己</textarea><br/>
+        <input type="submit"/>
+        <input type="reset"/>
+
+
+    </form>
+    
+</body>
+</html>
