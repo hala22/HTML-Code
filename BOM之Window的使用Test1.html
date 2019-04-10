@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSBOM之Window的使用</title>
+
+    <script type="text/javascript">
+
+        <!--警告框Alert-->
+        function testAlert() {
+            window.alert("弹出警告框！")
+        }
+
+        //确认框Confirm
+        function testConfirm() {
+          var result= window.confirm("是否关闭窗口？");
+            if(result){
+                window.close();
+            }
+        }
+
+        //确认框prompt
+        function testPrompt() {
+            var result=window.prompt("请输入名字");
+            if(result!=null){
+                window.alert(result);
+            }
+        }
+
+        //滚动条
+        function testScrolling() {
+            //滚动到多少
+            window.scrollTo(30,30);
+            //每次滚动多少
+            // window.scrollBy(10,10);
+        }
+
+        //打开窗口
+        function testOpen() {
+            window.open("http://www.baidu.com");
+        }
+
+        <!--启动计时器-->
+        var timer=null;
+        function testSetInterval(){
+            if(timer==null){
+                timer=window.setInterval(showTime,1000);
+            }
+        }
+
+        //显示时间
+        function showTime() {
+            var date=new Date();
+            var element=document.getElementById("time");
+            element.innerHTML=date.toLocaleString();
+        }
+
+        function testClearInterval(){
+            if(timer!=null){
+                window.clearInterval(timer);
+                timer=null;
+            }
+        }
+
+    </script>
+</head>
+<body>
+    <input type="button" name="alert" value="alert" onclick="testAlert()"/><br/>
+    <input type="button" name="confirm" value="confirm" onclick="testConfirm()"/><br/>
+    <input type="button" name="prompt" value="prompt" onclick="testPrompt()"/><br/>
+    <input type="button" name="scroll" value="scroll" onclick="testScrolling()"/><br/>
+    <input type="button" name="open" value="open" onclick="testOpen()"/><br/>
+    <div id="time"></div>
+    <input type="button" name="SetInterval" value="启动定时器" onclick="testSetInterval()"/><br/>
+    <input type="button" name="ClearInterval" value="停止定时器" onclick="testClearInterval()"/>
+</body>
+</html>

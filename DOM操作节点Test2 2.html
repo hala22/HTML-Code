@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSDOM操作节点</title>
+
+    <script type="text/javascript">
+
+        function showInfo() {
+
+            var element1=document.getElementById("ul1");
+             alert(element1.innerHTML);
+             alert(element1.lastChild.innerHTML);
+             alert(element1.firstChild.nextSibling.innerHTML);
+            var liArray=element1.getElementsByTagName("li");
+            for(var i=0;i<liArray.length;i++){
+
+                alert(liArray[i].innerHTML);
+            }
+
+        }
+
+        function addNode() {
+            var li=document.createElement("li");
+            li.innerHTML="锤子";
+
+            var element=document.getElementById("ul1");
+            var element1=document.getElementById("ul2");
+            element.append(li);
+            //复制节点及后代
+            var copy=li.cloneNode(true);
+            element1.insertBefore(copy,element1.firstChild.nextSibling);
+
+
+        }
+
+        function deleteNode() {
+            var element=document.getElementById("ul1");
+            var liArray=element.getElementsByTagName("li");
+            if(liArray.length>0){
+                element.removeChild(liArray[liArray.length-1]);
+            }else{
+                alert("删完了");
+            }
+
+        }
+
+        function handleClick() {
+            var formElement=document.getElementById("form");
+            var elementArray=formElement.elements;
+            var userNameEl=elementArray["username"];
+            var userName=userNameEl.value;
+            var passWordEl=elementArray.password;
+            var passWord=passWordEl.value;
+
+            if(userName!=""&&passWord!=""){
+                formElement.submit();
+            }else{
+                alert("输入不能为空");
+            }
+
+            var city=formElement.elements.city;
+            var optionArray=city.options;
+            var content="";
+
+            for(var i=0;i<optionArray.length;i++){
+                if(optionArray[i].selected){
+                    content=optionArray[i].text;
+                    break;
+                }
+            }
+
+            alert("选中的城市是："+content);
+        }
+
+        function addCity() {
+            var option=new Option("杭州","hangzhou",false,false);
+            var city=document.getElementById("city");
+            city.options[city.options.length]=option;
+
+        }
+
+
+        function handleClick1() {
+            var stu=document.getElementById("stuTable");
+            alert(stu.caption.innerHTML);
+            var rowArray=stu.rows;
+            var content="";
+            for(var i=0;i<rowArray.length;i++){
+                var cellArray=rowArray[i].cells;
+                for(var j=0;j<cellArray.length;j++){
+                    content+=cellArray[j].innerHTML+" ";
+                }
+                content+="\n";
+            }
+
+            alert(content);
+        }
+
+        function addStu() {
+            var stu=document.getElementById("stuTable");
+             alert(stu.rows.length);//不算标题列
+            var row=stu.insertRow(stu.rows.length-1);
+            var cell1=row.insertCell(0);
+            cell1.innerHTML="小军";
+            var cell2=row.insertCell(1);
+            cell2.innerHTML="12";
+            var cell3=row.insertCell(2);
+            cell3.innerHTML="4";
+
+        }
+    </script>
+</head>
+<body>
+    <ul id="ul1">
+       <li>华为</li>
+       <li>小米</li>
+       <li>vivo</li>
+       <li>oppo</li></ul>
+
+    <ul id="ul2">
+        <li>苹果</li>
+        <li>三星</li>
+        <li>黑莓</li>
+        <li>诺基亚</li>
+    </ul>
+
+    <input type="button" value="获取元素" onclick="showInfo()" ><br/>
+    <input type="button" value="添加一个节点" onclick="addNode()"><br/>
+    <input type="button" value="删除一个节点" onclick="deleteNode()"><br/><br/>
+
+    <form id="form" method="get">
+        用户名：<input type="next" name="username"><br/>
+        密&nbsp&nbsp&nbsp码：<input type="password" name="password"><br/>
+        所在城市：<select id="city" name="city" >
+            <option value="shanghai" selected>上海</option>
+            <option value="beijing">北京</option>
+            <option value="tianjin">天津</option>
+    </select><br/>
+        <input type="button" value="提交" onclick="handleClick()">
+        <input type="button" value="添加城市" onclick="addCity()">
+    </form><br/>
+
+    <table border="1px" cellspacing="0px" id="stuTable">
+        <caption>学生信息表</caption>
+        <thead>
+           <tr>
+               <th>学生姓名</th>
+               <th>年龄</th>
+               <th>学号</th>
+           </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>小明</td>
+                <td>10</td>
+                <td>1</td>
+            </tr>
+            <tr>
+                <td>小新</td>
+                <td>11</td>
+                <td>2</td>
+            </tr>
+            <tr>
+                <td>小兰</td>
+                <td>10</td>
+                <td>3</td>
+            </tr>
+        </tbody>
+        <tfoot >
+
+            <tr>
+                <td colspan="3">总计：3</td>
+            </tr>
+        </tfoot>
+    </table><br/>
+    <input type="button" value="查询表格信息" onclick="handleClick1()"/><br/>
+    <input type="button" value="添加学生" onclick="addStu()"/>
+
+</body>
+</html>
