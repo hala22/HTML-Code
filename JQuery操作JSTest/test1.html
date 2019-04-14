@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JQuery节点操作</title>
+    <link href="css.css" type="text/css" rel="stylesheet"/>
+    <script src="jquery-3.1.1.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            //创建元素
+            var li=$("<li id='meizu'>魅族</li>");
+
+            //添加元素----------------------------------------------
+            //这里li是使用同一对象，以此向下之下执行，所以后边的会覆盖前边的
+            //添加到最后
+            $("ul").append(li);
+            // li.appendTo("ul");
+
+            //添加到开始
+            // $("ul").prepend(li);
+            li.prependTo("ul");
+
+            //插入到指定元素前
+            // $("li:eq(1)").before(li);
+            li.insertBefore("li:eq(2)");
+
+            //插入到指定元素后
+            $("li:eq(3)").after(li);
+            // li.insertAfter("li:eq(3)");
+
+            //删除元素----------------------------------------------
+            //remove() 删除元素,不会保留事件和附加数据,适合删除后不再利用
+            var li=$("li:eq(0)").remove();
+            $("ul").append(li);
+
+            //detach() 删除元素,保留事件和附加数据,适合删除后再利用
+            var li=$("li:eq(0)").detach();
+            $("ul").append(li);
+
+            //empty():清空,清空文本和子元素,但节点还在
+            // $("li:last").empty();
+
+            //复制元素----------------------------------------------
+            //true:同时复制事件
+            $("li:eq(2)").clone(true).appendTo("ul");
+
+            //替换元素----------------------------------------------
+            $("li:eq(2)").replaceWith("<li>红米</li>");
+            // $("<li>红米</li>").replaceAll("li:eq(2),li:eq(5)");
+
+            //Class属性----------------------------------------------
+            //添加点击事件
+            $("li").click(function () {
+                $(this).toggleClass("one");
+            });
+
+        });
+    </script>
+</head>
+<body>
+<ul>
+    <li id="huawei">华为</li>
+    <li>苹果</li>
+    <li>vivo</li>
+    <li>小米</li>
+</ul>
+
+<select name="city" size="4" multiple>
+    <option value="beijing" selected>北京</option>
+    <option value="nanjing">南京</option>
+    <option value="tianjin">天津</option>
+    <option value="shijiazhuang">石家庄</option>
+    <option value="dalian">大连</option>
+    <option value="nanchang">南昌</option>
+    <option value="zhengzhou">郑州</option>
+</select>
+
+<div id="div2">我是一个div</div>
+
+
+</body>
+</html>

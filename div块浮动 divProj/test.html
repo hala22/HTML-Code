@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>div块浮动</title>
+    <style type="text/css">
+        div{
+            position: absolute;
+            border: 1px solid yellow;
+            background-color: crimson;
+            width: 100px;
+            height: 50px;
+        }
+    </style>
+    <script src="jquery-3.1.1.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            var timer=window.setInterval(move,20);
+
+        });
+
+        var leftFlag=1;
+        var topFlag=1;
+
+        function  move() {
+
+
+            //获取当前偏移量
+            var offset=$("div").offset();
+            var left=offset.left;
+            var top=offset.top;
+
+            //获取窗口宽度，高度，计算最大宽高度
+            var maxLeft=$(window).width()-$("div").width();
+            var maxTop=$(window).height()-$("div").height();
+
+
+            if(left>=maxLeft||left<=0){
+                leftFlag=-leftFlag;
+            }
+
+            if(top>=maxTop||top<=0){
+                topFlag=-topFlag;
+            }
+
+            //设置偏移量，使其动起来
+            left=left+10*leftFlag;
+            top=top+10*topFlag;
+            $("div").offset({"left":left,"top":top});
+
+
+        }
+    </script>
+</head>
+<body>
+    <div>我是一个漂浮的块</div>
+</body>
+</html>
